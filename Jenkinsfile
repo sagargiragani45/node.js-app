@@ -26,9 +26,11 @@ pipeline {
         }
         stage('Docker Push'){
             steps {
-                docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cred') {
-                    
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cred') {
+
                     app.push()
+                    }
                 }
             }
         }
