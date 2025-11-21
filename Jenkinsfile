@@ -27,9 +27,9 @@ pipeline {
         stage('Docker Push'){
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cred') {
-
-                    app.push()
+    def app = docker.build("sagargiragani/node.js-app:${BUILD_NUMBER}")
+    docker.withRegistry("https://index.docker.io/v1/", "dockerhub-cred") {
+        app.push()
                     }
                 }
             }
